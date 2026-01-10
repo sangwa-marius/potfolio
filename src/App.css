@@ -193,38 +193,77 @@ nav img{
   color:rgba(248, 232, 232, 0.589)
 }
 
-.projects{
-margin:150px auto;
-width:80vw;
-display:grid;
-grid-template-columns:  1fr ,1fr;
 
+
+.projects {
+  margin: 150px auto;
+  width: 80vw;
+  display: grid;
+  /* Default: 1 column for small screens */
+  grid-template-columns: 1fr;
+  gap: 30px; /* Added gap between cards */
+  justify-content: center;
 }
 
-.project-card{
-  background:rgba(15, 6, 61, 0.911);
-  width:40%;
+.project-card {
+  background: rgba(15, 6, 61, 0.911);
+  width: 100%; /* Changed to 100% to fill grid cell */
   border-radius: 12px;
   text-align: center;
-  border:1px solid  rgb(73, 72, 72);
+  border: 1px solid rgb(73, 72, 72);
+  /* Optional: Add consistent height or min-height if needed */
+  min-height: 300px;
 }
 
 .project-card h2{
-  color:aliceblue;
-  font-family:Verdana, Geneva, Tahoma, sans-serif
-}
-
-.project-card img{
-  width:80%;
-  border-radius:10px;
-  transition:2s ease
-}
-
-.project-card img:hover{
-  transform: scale(1.08);
-}
-
-.project-card p{
   color:white
 }
 
+.project-card p{
+  color: aqua;
+  background:rgba(16, 2, 48, 0.918);
+  padding:12px;
+  margin:10px auto;
+  border-radius: 12px;
+  width: 80%;
+  border:1px solid black;
+  text-align: left;
+}
+
+.project-card img{
+  border-radius: 12px;
+  transition:1s ease;
+}
+
+.project-card img:hover{
+  transform: scale(1.2);
+}
+
+/* Medium screens (2 columns) */
+@media (min-width: 768px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large screens (3 columns) */
+@media (min-width: 1024px) {
+  .projects {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  /* Optional: Adjust width for large screens */
+  .projects {
+    width: 90vw;
+    max-width: 1400px;
+  }
+}
+
+/* Extra small screens adjustment */
+@media (max-width: 480px) {
+  .projects {
+    width: 90vw;
+    margin: 100px auto;
+    gap: 20px;
+  }
+}
