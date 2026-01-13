@@ -146,19 +146,19 @@ nav img{
 
 .skill-card {
   display: flex;
-  align-items: center;      /* centers image + text vertically */
-  gap: 12px;                /* space between image and text */
+  align-items: center;     
+  gap: 12px;                
   padding: 10px 14px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   transition: 0.3s ease;
 }
 
-/* main container holding all skills */
+
 .skill-card {
   display: flex;
-  flex-wrap: wrap;             /* allows wrapping to next line */
-  gap: 14px;                   /* space between each card */
+  flex-wrap: wrap;             
+  gap: 14px;                   
 }
 
 
@@ -199,20 +199,24 @@ nav img{
   margin: 150px auto;
   width: 80vw;
   display: grid;
-  /* Default: 1 column for small screens */
+ 
   grid-template-columns: 1fr;
-  gap: 30px; /* Added gap between cards */
+  gap: 30px; 
   justify-content: center;
 }
 
 .project-card {
   background: rgba(15, 6, 61, 0.911);
-  width: 100%; /* Changed to 100% to fill grid cell */
+  width: 100%;
   border-radius: 12px;
   text-align: center;
   border: 1px solid rgb(73, 72, 72);
-  /* Optional: Add consistent height or min-height if needed */
   min-height: 300px;
+  transition: 1s ease;
+}
+
+.project-card:hover{
+  transform: translateY(-20px);
 }
 
 .project-card h2{
@@ -239,27 +243,27 @@ nav img{
   transform: scale(1.2);
 }
 
-/* Medium screens (2 columns) */
+
 @media (min-width: 768px) {
   .projects {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Large screens (3 columns) */
+
 @media (min-width: 1024px) {
   .projects {
     grid-template-columns: repeat(3, 1fr);
   }
   
-  /* Optional: Adjust width for large screens */
+  
   .projects {
     width: 90vw;
     max-width: 1400px;
   }
 }
 
-/* Extra small screens adjustment */
+
 @media (max-width: 480px) {
   .projects {
     width: 90vw;
