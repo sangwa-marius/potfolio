@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
 body{
   overflow-x: none;
-  background:black
+  background:white;
   
 }
 
@@ -20,7 +20,7 @@ body{
   }
 
   .home-in h1{
-    color:aqua;
+    color:rgb(0, 68, 255);
     font-family: 'Orbitron',sans-serif;
     font-size: 50px;
     white-space: nowrap;
@@ -29,14 +29,14 @@ body{
   }
 
   .home-in h3{
-    color:aqua;
+    color:rgb(0, 123, 255);
     font-family: 'Orbitron',sans-serif;
   
   }
 
   @keyframes typing {
-  0%   { width: 0ch; color:white }
-  50%  { width: 20ch; color:aliceblue }
+  0%   { width: 0ch; color:rgb(9, 105, 208) }
+  50%  { width: 20ch; color:rgb(5, 83, 150) }
   100% { width: 0ch; }
 }
 
@@ -64,7 +64,7 @@ body{
 }
 
 .home p{
-  color:rgba(255, 255, 255, 0.76);
+  color:rgba(15, 3, 3, 0.76);
   z-index: 1;
   font-size: 20px;
   
@@ -72,7 +72,7 @@ body{
 }
 
 span{
-  color:rgba(0, 255, 255, 0.63);
+  color:rgba(40, 58, 199, 0.63);
   font-weight: 1000;
 
 }
@@ -89,7 +89,7 @@ span{
 }
 
 nav{
-  background-color: rgb(1, 2, 10);
+  background-color: rgb(249, 250, 253);
   position: fixed;
   top:0;
   left: 0;
@@ -130,7 +130,7 @@ nav img{
 .nav-link{
   display: inline;
   margin-right: 20px;
-  color:white;
+  color:rgb(9, 37, 217);
   text-decoration: none;
   font-weight: 1000;
   transition:2000ms ease;
@@ -190,7 +190,7 @@ nav img{
   margin: 0;
   font-size: 14px;
   font-weight: 600;
-  color:rgba(248, 232, 232, 0.589)
+  color:rgba(2, 1, 1, 0.589)
 }
 
 
@@ -275,8 +275,8 @@ nav img{
 
 .contact-section {
   padding: 120px 5% 100px;
-  background: black;
-  color: #e2e8f0;
+  background: white;
+  color: black;
   position: relative;
   overflow: hidden;
 }
@@ -311,7 +311,7 @@ nav img{
 .section-subtitle {
   text-align: center;
   font-size: 1.25rem;
-  color: #94a3b8;
+  color:black;
   margin-bottom: 5rem;
 }
 
@@ -323,7 +323,7 @@ nav img{
 }
 
 .contact-info {
-  background: rgba(0, 8, 18, 0.947);
+  background: white;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(59, 130, 246, 0.15);
   border-radius: 16px;
@@ -348,13 +348,13 @@ nav img{
 }
 
 .contact-info a {
-  color: #cbd5e1;
+  color: black;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .contact-info a:hover {
-  color: #60a5fa;
+  color: white;
   transform: translateX(6px);
   display: inline-block;
 }
@@ -365,7 +365,7 @@ nav img{
 }
 
 .contact-form {
-  background: rgba(0, 2, 6, 0.6);
+  background:white;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(59, 130, 246, 0.15);
   border-radius: 16px;
@@ -382,8 +382,8 @@ input, textarea {
   padding: 1rem 1.2rem;
   border: 1px solid rgba(148, 163, 184, 0.3);
   border-radius: 10px;
-  background: rgba(15, 23, 42, 0.5);
-  color: #e2e8f0;
+  background: white;
+  color: black;
   font-size: 1.05rem;
   transition: all 0.3s ease;
   font-family: inherit;
@@ -394,7 +394,7 @@ input:focus, textarea:focus {
   outline: none;
   border-color: #60a5fa;
   box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.15);
-  background: rgba(15, 23, 42, 0.7);
+  background: rgba(250, 251, 252, 0.7);
   
 }
 
