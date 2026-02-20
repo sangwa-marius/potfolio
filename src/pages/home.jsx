@@ -16,6 +16,9 @@ function Home() {
           --background: #FFFFFF;
           --surface: #F8F9FA;
           --border: #E5E5E5;
+          --success: #22c55e;
+          --warning: #f59e0b;
+          --in-progress: #3b82f6;
         }
         
         * {
@@ -66,6 +69,11 @@ function Home() {
         @keyframes pulse {
           0%, 100% { transform: scale(1); }
           50% { transform: scale(1.05); }
+        }
+
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.4; }
         }
         
         .animate-in {
@@ -543,13 +551,174 @@ function Home() {
           font-weight: 600;
           color: var(--text-primary);
         }
-        
-        /* Projects Grid */
+
+        /* =============================================
+           PROJECTS SECTION — UPDATED
+           ============================================= */
+
+        /* Legend / Filter Bar */
+        .projects-legend {
+          display: flex;
+          gap: 1.5rem;
+          flex-wrap: wrap;
+          margin-bottom: 3rem;
+          align-items: center;
+        }
+
+        .legend-item {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.9rem;
+          font-weight: 500;
+          color: var(--text-secondary);
+        }
+
+        .legend-dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+        }
+
+        .legend-dot.completed { background: var(--success); }
+        .legend-dot.in-progress { background: var(--in-progress); }
+        .legend-dot.planned { background: #9ca3af; }
+
+        /* Status Badges */
+        .status-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          padding: 0.35rem 0.9rem;
+          border-radius: 50px;
+          font-size: 0.8rem;
+          font-weight: 700;
+          letter-spacing: 0.3px;
+          text-transform: uppercase;
+        }
+
+        .status-badge.completed {
+          background: rgba(34, 197, 94, 0.12);
+          color: #16a34a;
+          border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .status-badge.in-progress {
+          background: rgba(59, 130, 246, 0.1);
+          color: #2563eb;
+          border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .status-badge.planned {
+          background: rgba(156, 163, 175, 0.15);
+          color: #6b7280;
+          border: 1px solid rgba(156, 163, 175, 0.3);
+        }
+
+        .status-dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+        }
+
+        .status-badge.completed .status-dot { background: var(--success); }
+        .status-badge.in-progress .status-dot {
+          background: var(--in-progress);
+          animation: blink 1.5s ease-in-out infinite;
+        }
+        .status-badge.planned .status-dot { background: #9ca3af; }
+
+        /* Featured (Completed) Project */
+        .project-featured {
+          background: white;
+          border: 2px solid var(--success);
+          border-radius: 24px;
+          overflow: hidden;
+          margin-bottom: 3rem;
+          box-shadow: 0 8px 40px rgba(34, 197, 94, 0.1);
+          transition: all 0.4s ease;
+          display: grid;
+          grid-template-columns: 1.1fr 1fr;
+        }
+
+        .project-featured:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 24px 60px rgba(34, 197, 94, 0.15);
+        }
+
+        .project-featured .project-image-featured {
+          width: 100%;
+          height: 100%;
+          min-height: 340px;
+          background-size: cover;
+          background-position: center;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .project-featured .project-image-featured::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, rgba(255,107,53,0.7) 0%, rgba(255,107,53,0.45) 100%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .project-featured:hover .project-image-featured::after {
+          opacity: 1;
+        }
+
+        .project-featured-overlay {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 2.8rem;
+          font-weight: 700;
+          color: white;
+          font-family: 'Libre Baskerville', serif;
+          z-index: 1;
+          white-space: nowrap;
+        }
+
+        .project-featured-content {
+          padding: 3rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 1.2rem;
+        }
+
+        .project-featured-content .project-title {
+          font-size: 2rem;
+          font-weight: 700;
+          color: var(--primary);
+          line-height: 1.3;
+        }
+
+        .project-featured-content .project-description {
+          color: var(--text-secondary);
+          line-height: 1.8;
+          font-size: 1rem;
+        }
+
+        /* Completed highlight callout */
+        .completed-callout {
+          background: rgba(34, 197, 94, 0.07);
+          border-left: 3px solid var(--success);
+          border-radius: 0 8px 8px 0;
+          padding: 0.8rem 1rem;
+          font-size: 0.9rem;
+          color: #15803d;
+          font-weight: 500;
+        }
+
+        /* Other projects grid */
         .projects-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-          gap: 3rem;
-          margin-top: 4rem;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 2.5rem;
         }
         
         .project-card {
@@ -558,17 +727,25 @@ function Home() {
           border-radius: 20px;
           overflow: hidden;
           transition: all 0.4s ease;
-          cursor: pointer;
+          position: relative;
+        }
+
+        .project-card.is-planned {
+          opacity: 0.75;
+        }
+
+        .project-card.is-planned:hover {
+          opacity: 1;
         }
         
         .project-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+          transform: translateY(-8px);
+          box-shadow: 0 24px 50px rgba(0, 0, 0, 0.1);
         }
         
         .project-image {
           width: 100%;
-          height: 250px;
+          height: 220px;
           background-size: cover;
           background-position: center;
           position: relative;
@@ -591,47 +768,101 @@ function Home() {
           opacity: 1;
         }
 
+        /* Blurred overlay for planned projects */
+        .project-card.is-planned .project-image::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: rgba(255,255,255,0.35);
+          backdrop-filter: blur(2px);
+          z-index: 1;
+        }
+
         .project-overlay {
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          font-size: 3rem;
+          font-size: 2.2rem;
           font-weight: 700;
           color: white;
           font-family: 'Libre Baskerville', serif;
-          z-index: 1;
+          z-index: 2;
+        }
+
+        /* Badge pinned on image */
+        .image-badge {
+          position: absolute;
+          top: 1rem;
+          left: 1rem;
+          z-index: 3;
         }
         
         .project-content {
-          padding: 2rem;
+          padding: 1.8rem;
         }
         
+        .project-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 0.8rem;
+          margin-bottom: 0.8rem;
+        }
+
         .project-title {
-          font-size: 1.6rem;
+          font-size: 1.4rem;
           font-weight: 700;
           color: var(--primary);
-          margin-bottom: 0.8rem;
         }
         
         .project-description {
           color: var(--text-secondary);
           line-height: 1.7;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.2rem;
+          font-size: 0.95rem;
+        }
+
+        /* Progress bar for in-progress */
+        .progress-wrap {
+          margin-bottom: 1.2rem;
+        }
+
+        .progress-label {
+          font-size: 0.82rem;
+          font-weight: 600;
+          color: var(--text-secondary);
+          margin-bottom: 0.4rem;
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .progress-bar {
+          height: 6px;
+          background: var(--border);
+          border-radius: 99px;
+          overflow: hidden;
+        }
+
+        .progress-fill {
+          height: 100%;
+          border-radius: 99px;
+          background: var(--in-progress);
+          transition: width 0.6s ease;
         }
         
         .project-tags {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.8rem;
-          margin-bottom: 1.5rem;
+          gap: 0.6rem;
+          margin-bottom: 1.2rem;
         }
         
         .project-tag {
-          padding: 0.4rem 1rem;
+          padding: 0.35rem 0.9rem;
           background: var(--surface);
           border-radius: 20px;
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           font-weight: 500;
           color: var(--text-primary);
         }
@@ -645,15 +876,24 @@ function Home() {
           color: var(--accent);
           text-decoration: none;
           font-weight: 600;
-          font-size: 0.95rem;
+          font-size: 0.9rem;
           transition: all 0.3s ease;
         }
         
         .project-links a:hover {
           color: var(--primary);
-          transform: translateX(5px);
         }
 
+        .project-links a.disabled-link {
+          color: #9ca3af;
+          pointer-events: none;
+          cursor: default;
+        }
+
+        /* =============================================
+           END PROJECTS SECTION
+           ============================================= */
+        
         /* Process Section */
         .process-grid {
           display: grid;
@@ -966,7 +1206,6 @@ function Home() {
 
         /* CTA Section */
         .cta-section {
-          
           padding: 80px 2rem;
           text-align: center;
           border-radius: 30px;
@@ -1061,6 +1300,14 @@ function Home() {
           .nav-links {
             gap: 1.5rem;
           }
+
+          .project-featured {
+            grid-template-columns: 1fr;
+          }
+
+          .project-featured .project-image-featured {
+            min-height: 260px;
+          }
         }
         
         @media (max-width: 768px) {
@@ -1094,6 +1341,10 @@ function Home() {
 
           .blog-grid {
             grid-template-columns: 1fr;
+          }
+
+          .projects-legend {
+            gap: 1rem;
           }
         }
       `}</style>
@@ -1493,25 +1744,92 @@ function Home() {
           </div>
         </section>
 
-        {/* Projects Section */}
+        {/* ===== PROJECTS SECTION ===== */}
         <section id="projects" className="section section-alt">
           <h2 className="section-title">Featured Projects</h2>
           <p className="section-subtitle">
-            A selection of my recent work and side projects
+            My completed work and what's currently in the pipeline
           </p>
-          
+
+          {/* Legend */}
+          <div className="projects-legend">
+            <div className="legend-item">
+              <div className="legend-dot completed"></div>
+              Completed
+            </div>
+            <div className="legend-item">
+              <div className="legend-dot in-progress"></div>
+              In Progress
+            </div>
+            <div className="legend-item">
+              <div className="legend-dot planned"></div>
+              Planned
+            </div>
+          </div>
+
+          {/* ── COMPLETED: Student Portal (Featured) ── */}
+          <div className="project-featured">
+            <div
+              className="project-image-featured"
+              style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80)' }}
+            >
+              <div className="project-featured-overlay">EduPortal</div>
+            </div>
+            <div className="project-featured-content">
+              <span className="status-badge completed">
+                <span className="status-dot"></span> Completed
+              </span>
+              <h3 className="project-title">Student Portal System</h3>
+              <p className="project-description">
+                A comprehensive student management system built for educational institutions. 
+                Fully functional and deployed — featuring attendance tracking, grade management, 
+                announcements, parent-teacher communication, assignment submission, and class schedules. 
+                Built with a clean, role-based interface for students, teachers, and administrators.
+              </p>
+              <div className="completed-callout">
+                 This is my flagship completed project — fully built, tested, and ready to use.
+              </div>
+              <div className="project-tags">
+                <span className="project-tag">React</span>
+                <span className="project-tag">PHP</span>
+                <span className="project-tag">MySQL</span>
+                <span className="project-tag">Bootstrap</span>
+              </div>
+              <div className="project-links">
+                <a href="https://sangwa-marius.github.io/php_msms/" target="_blank" rel="noopener noreferrer">Live Demo →</a>
+                <a href="https://github.com/sangwa-marius/php_sms.git" target="_blank" rel="noopener noreferrer">GitHub →</a>
+              </div>
+            </div>
+          </div>
+
+          {/* ── IN PROGRESS & PLANNED projects grid ── */}
           <div className="projects-grid">
+
+            {/* IN PROGRESS */}
             <div className="project-card">
-              <div className="project-image" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80)'}}>
+              <div className="project-image" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80)' }}>
+                <div className="image-badge">
+                  <span className="status-badge in-progress">
+                    <span className="status-dot"></span> In Progress
+                  </span>
+                </div>
                 <div className="project-overlay">E-Shop</div>
               </div>
               <div className="project-content">
-                <h3 className="project-title">E-Commerce Platform</h3>
+                <div className="project-header">
+                  <h3 className="project-title">E-Commerce Platform</h3>
+                </div>
+                <div className="progress-wrap">
+                  <div className="progress-label">
+                    <span>Progress</span><span>60%</span>
+                  </div>
+                  <div className="progress-bar">
+                    <div className="progress-fill" style={{ width: '60%' }}></div>
+                  </div>
+                </div>
                 <p className="project-description">
-                  A full-featured online shopping platform with product catalog, shopping cart, 
-                  and secure checkout. Built with React for the frontend and PHP backend with 
-                  MySQL database integration. Features include user authentication, product search,
-                  filtering, and an admin dashboard for inventory management.
+                  Full-featured shopping platform with product catalog, cart, and checkout. 
+                  Backend and database are done; currently polishing the frontend UI and admin dashboard.
                 </p>
                 <div className="project-tags">
                   <span className="project-tag">React</span>
@@ -1520,23 +1838,36 @@ function Home() {
                   <span className="project-tag">CSS3</span>
                 </div>
                 <div className="project-links">
-                  <a href="#" target="_blank" rel="noopener noreferrer">Live Demo →</a>
+                  <a href="#" className="disabled-link">Live Demo (coming soon)</a>
                   <a href="#" target="_blank" rel="noopener noreferrer">GitHub →</a>
                 </div>
               </div>
             </div>
-            
+
             <div className="project-card">
-              <div className="project-image" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80)'}}>
+              <div className="project-image" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80)' }}>
+                <div className="image-badge">
+                  <span className="status-badge in-progress">
+                    <span className="status-dot"></span> In Progress
+                  </span>
+                </div>
                 <div className="project-overlay">TaskFlow</div>
               </div>
               <div className="project-content">
-                <h3 className="project-title">Task Management App</h3>
+                <div className="project-header">
+                  <h3 className="project-title">Task Management App</h3>
+                </div>
+                <div className="progress-wrap">
+                  <div className="progress-label">
+                    <span>Progress</span><span>40%</span>
+                  </div>
+                  <div className="progress-bar">
+                    <div className="progress-fill" style={{ width: '40%' }}></div>
+                  </div>
+                </div>
                 <p className="project-description">
-                  A productivity application for managing tasks, projects, and deadlines. 
-                  Features include drag-and-drop task organization, priority levels, 
-                  collaborative team workspaces, real-time updates, and progress tracking.
-                  Built with modern web technologies for optimal performance.
+                  Productivity app for managing tasks and deadlines with drag-and-drop boards. 
+                  Core task CRUD is working; team collaboration and real-time sync are in development.
                 </p>
                 <div className="project-tags">
                   <span className="project-tag">React</span>
@@ -1545,47 +1876,36 @@ function Home() {
                   <span className="project-tag">PostgreSQL</span>
                 </div>
                 <div className="project-links">
-                  <a href="#" target="_blank" rel="noopener noreferrer">Live Demo →</a>
+                  <a href="#" className="disabled-link">Live Demo (coming soon)</a>
                   <a href="#" target="_blank" rel="noopener noreferrer">GitHub →</a>
                 </div>
               </div>
             </div>
-            
+
             <div className="project-card">
-              <div className="project-image" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80)'}}>
-                <div className="project-overlay">PortBuilder</div>
-              </div>
-              <div className="project-content">
-                <h3 className="project-title">Portfolio Website Builder</h3>
-                <p className="project-description">
-                  A customizable portfolio builder that allows users to create professional 
-                  websites without coding. Features template selection, drag-and-drop editing, 
-                  responsive design, custom domains, and SEO optimization. Perfect for 
-                  creatives and professionals.
-                </p>
-                <div className="project-tags">
-                  <span className="project-tag">React</span>
-                  <span className="project-tag">CSS3</span>
-                  <span className="project-tag">JavaScript</span>
-                  <span className="project-tag">Firebase</span>
+              <div className="project-image" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80)' }}>
+                <div className="image-badge">
+                  <span className="status-badge in-progress">
+                    <span className="status-dot"></span> In Progress
+                  </span>
                 </div>
-                <div className="project-links">
-                  <a href="#" target="_blank" rel="noopener noreferrer">Live Demo →</a>
-                  <a href="#" target="_blank" rel="noopener noreferrer">GitHub →</a>
-                </div>
-              </div>
-            </div>
-            
-            <div className="project-card">
-              <div className="project-image" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80)'}}>
                 <div className="project-overlay">FoodHub</div>
               </div>
               <div className="project-content">
-                <h3 className="project-title">Restaurant Ordering System</h3>
+                <div className="project-header">
+                  <h3 className="project-title">Restaurant Ordering System</h3>
+                </div>
+                <div className="progress-wrap">
+                  <div className="progress-label">
+                    <span>Progress</span><span>30%</span>
+                  </div>
+                  <div className="progress-bar">
+                    <div className="progress-fill" style={{ width: '30%' }}></div>
+                  </div>
+                </div>
                 <p className="project-description">
-                  An online food ordering platform with menu management, order tracking, and 
-                  payment integration. Includes admin dashboard for restaurant owners to manage 
-                  orders and inventory, real-time notifications, and customer reviews system.
+                  Online food ordering platform with menu management and order tracking. 
+                  Currently building the menu and order flow; payment and notifications coming next.
                 </p>
                 <div className="project-tags">
                   <span className="project-tag">React</span>
@@ -1594,22 +1914,29 @@ function Home() {
                   <span className="project-tag">API</span>
                 </div>
                 <div className="project-links">
-                  <a href="#" target="_blank" rel="noopener noreferrer">Live Demo →</a>
+                  <a href="#" className="disabled-link">Live Demo (coming soon)</a>
                   <a href="#" target="_blank" rel="noopener noreferrer">GitHub →</a>
                 </div>
               </div>
             </div>
-            
-            <div className="project-card">
-              <div className="project-image" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&q=80)'}}>
+
+            {/* PLANNED */}
+            <div className="project-card is-planned">
+              <div className="project-image" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&q=80)' }}>
+                <div className="image-badge">
+                  <span className="status-badge planned">
+                    <span className="status-dot"></span> Planned
+                  </span>
+                </div>
                 <div className="project-overlay">WeatherPro</div>
               </div>
               <div className="project-content">
-                <h3 className="project-title">Weather Dashboard</h3>
+                <div className="project-header">
+                  <h3 className="project-title">Weather Dashboard</h3>
+                </div>
                 <p className="project-description">
-                  A sleek weather application that provides current conditions, hourly forecasts, 
-                  and 7-day predictions. Features location search, saved favorites, beautiful 
-                  weather animations, severe weather alerts, and detailed meteorological data.
+                  A sleek weather app with 7-day forecasts, location search, and beautiful weather animations. 
+                  Planned for development after current in-progress projects wrap up.
                 </p>
                 <div className="project-tags">
                   <span className="project-tag">React</span>
@@ -1618,46 +1945,27 @@ function Home() {
                   <span className="project-tag">JavaScript</span>
                 </div>
                 <div className="project-links">
-                  <a href="#" target="_blank" rel="noopener noreferrer">Live Demo →</a>
-                  <a href="#" target="_blank" rel="noopener noreferrer">GitHub →</a>
-                </div>
-              </div>
-            </div>
-            
-            <div className="project-card">
-              <div className="project-image" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80)'}}>
-                <div className="project-overlay">EduPortal</div>
-              </div>
-              <div className="project-content">
-                <h3 className="project-title">Student Portal System</h3>
-                <p className="project-description">
-                  A comprehensive student management system for educational institutions. 
-                  Features include attendance tracking, grade management, announcements, 
-                  parent-teacher communication, assignment submission, and class schedules.
-                </p>
-                <div className="project-tags">
-                  <span className="project-tag">React</span>
-                  <span className="project-tag">PHP</span>
-                  <span className="project-tag">MySQL</span>
-                  <span className="project-tag">Bootstrap</span>
-                </div>
-                <div className="project-links">
-                  <a href="#" target="_blank" rel="noopener noreferrer">Live Demo →</a>
-                  <a href="#" target="_blank" rel="noopener noreferrer">GitHub →</a>
+                  <a href="#" className="disabled-link">Not started yet</a>
                 </div>
               </div>
             </div>
 
-            <div className="project-card">
-              <div className="project-image" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80)'}}>
+            <div className="project-card is-planned">
+              <div className="project-image" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80)' }}>
+                <div className="image-badge">
+                  <span className="status-badge planned">
+                    <span className="status-dot"></span> Planned
+                  </span>
+                </div>
                 <div className="project-overlay">Analytics</div>
               </div>
               <div className="project-content">
-                <h3 className="project-title">Business Analytics Dashboard</h3>
+                <div className="project-header">
+                  <h3 className="project-title">Business Analytics Dashboard</h3>
+                </div>
                 <p className="project-description">
-                  A comprehensive analytics platform for tracking business metrics and KPIs. 
-                  Features interactive charts, real-time data visualization, custom reports, 
-                  and exportable insights to help businesses make data-driven decisions.
+                  Interactive analytics platform with real-time KPI tracking and chart exports. 
+                  Planned as a future deep-dive into data visualization libraries.
                 </p>
                 <div className="project-tags">
                   <span className="project-tag">React</span>
@@ -1666,46 +1974,27 @@ function Home() {
                   <span className="project-tag">MongoDB</span>
                 </div>
                 <div className="project-links">
-                  <a href="#" target="_blank" rel="noopener noreferrer">Live Demo →</a>
-                  <a href="#" target="_blank" rel="noopener noreferrer">GitHub →</a>
+                  <a href="#" className="disabled-link">Not started yet</a>
                 </div>
               </div>
             </div>
 
-            <div className="project-card">
-              <div className="project-image" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=800&q=80)'}}>
-                <div className="project-overlay">BookStore</div>
-              </div>
-              <div className="project-content">
-                <h3 className="project-title">Online Bookstore</h3>
-                <p className="project-description">
-                  A modern online bookstore with advanced search, book recommendations, 
-                  user reviews, and reading lists. Includes secure payment processing, 
-                  order tracking, and personalized suggestions based on reading preferences.
-                </p>
-                <div className="project-tags">
-                  <span className="project-tag">React</span>
-                  <span className="project-tag">PHP</span>
-                  <span className="project-tag">MySQL</span>
-                  <span className="project-tag">Stripe</span>
+            <div className="project-card is-planned">
+              <div className="project-image" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=800&q=80)' }}>
+                <div className="image-badge">
+                  <span className="status-badge planned">
+                    <span className="status-dot"></span> Planned
+                  </span>
                 </div>
-                <div className="project-links">
-                  <a href="#" target="_blank" rel="noopener noreferrer">Live Demo →</a>
-                  <a href="#" target="_blank" rel="noopener noreferrer">GitHub →</a>
-                </div>
-              </div>
-            </div>
-
-            <div className="project-card">
-              <div className="project-image" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=800&q=80)'}}>
                 <div className="project-overlay">ChatApp</div>
               </div>
               <div className="project-content">
-                <h3 className="project-title">Real-Time Chat Application</h3>
+                <div className="project-header">
+                  <h3 className="project-title">Real-Time Chat Application</h3>
+                </div>
                 <p className="project-description">
-                  A modern messaging platform with real-time communication, group chats, 
-                  file sharing, and emoji support. Features end-to-end encryption, message 
-                  search, and customizable themes for enhanced user experience.
+                  Modern messaging platform with group chats, file sharing, and end-to-end encryption. 
+                  A future project to explore WebSocket and real-time architecture.
                 </p>
                 <div className="project-tags">
                   <span className="project-tag">React</span>
@@ -1714,13 +2003,14 @@ function Home() {
                   <span className="project-tag">MongoDB</span>
                 </div>
                 <div className="project-links">
-                  <a href="#" target="_blank" rel="noopener noreferrer">Live Demo →</a>
-                  <a href="#" target="_blank" rel="noopener noreferrer">GitHub →</a>
+                  <a href="#" className="disabled-link">Not started yet</a>
                 </div>
               </div>
             </div>
+
           </div>
         </section>
+        {/* ===== END PROJECTS SECTION ===== */}
 
         {/* Achievements Section */}
         <section className="section">
