@@ -1897,10 +1897,10 @@ function Home() {
                 </div>
                 <div className="progress-wrap">
                   <div className="progress-label">
-                    <span>Progress</span><span>30%</span>
+                    <span>Progress</span><span>80%</span>
                   </div>
                   <div className="progress-bar">
-                    <div className="progress-fill" style={{ width: '30%' }}></div>
+                    <div className="progress-fill" style={{ width: '80%' }}></div>
                   </div>
                 </div>
                 <p className="project-description">
