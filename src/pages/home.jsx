@@ -974,7 +974,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Grid */}
+  
           <div className="projects-grid">
             {/* In-progress */}
             {[
