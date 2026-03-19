@@ -1025,7 +1025,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ── Achievements ── */}
+    
       <section className="section">
         <p className="section-eyebrow">Recognition</p>
         <h2 className="section-title">Achievements & Certifications</h2>
