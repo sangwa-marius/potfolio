@@ -1002,7 +1002,7 @@ export default function Home() {
                 </div>
               </div>
             ))}
-            {/* Planned */}
+           
             {[
               {overlay:"WeatherPro",img:"https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&q=80",title:"Weather Dashboard",desc:"Sleek weather app with 7-day forecasts, location search, and weather animations. Planned after current in-progress projects wrap up.",tags:["React","Weather API","CSS3","JavaScript"]},
               {overlay:"Analytics",img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",title:"Business Analytics Dashboard",desc:"Interactive analytics platform with real-time KPI tracking and chart exports. A future deep-dive into data visualization libraries.",tags:["React","D3.js","Node.js","MongoDB"]},
