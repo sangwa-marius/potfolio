@@ -976,7 +976,7 @@ export default function Home() {
 
   
           <div className="projects-grid">
-            {/* In-progress */}
+           
             {[
               {overlay:"E-Shop",img:"https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80",title:"E-Commerce Platform",pct:60,desc:"Full-featured shopping platform with product catalog, cart, and checkout. Backend and database are done; currently polishing the frontend UI and admin dashboard.",tags:["React","PHP","MySQL","CSS3"]},
               {overlay:"TaskFlow",img:"https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80",title:"Task Management App",pct:40,desc:"Productivity app for managing tasks and deadlines with drag-and-drop boards. Core task CRUD is working; team collaboration and real-time sync in development.",tags:["React","JavaScript","Node.js","PostgreSQL"]},
